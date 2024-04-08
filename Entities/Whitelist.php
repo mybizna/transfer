@@ -13,7 +13,7 @@ class Whitelist extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'start_date', 'end_date', 'reason', 'user_id'];
+    protected $fillable = ['id', 'start_date', 'end_date', 'reason', 'partner_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -21,8 +21,8 @@ class Whitelist extends BaseModel
      * @var array<string>
      */
     public $rec_names = [
-        'fields' => ['user_id__name', 'start_date', 'end_date'],
-        'template' => "[user_id__name] ([start_date]-[end_date])",
+        'fields' => ['partner_id__name', 'start_date', 'end_date'],
+        'template' => "[partner_id__name] ([start_date]-[end_date])",
     ];
 
     /**

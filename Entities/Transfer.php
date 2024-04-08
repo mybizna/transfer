@@ -13,7 +13,7 @@ class Transfer extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'amount', 'currency', 'token', 'description', 'params', 'is_canceled', 'from_user_id', 'gateway_id', 'to_user_id'];
+    protected $fillable = ['id', 'amount', 'currency', 'token', 'description', 'params', 'is_canceled', 'from_partner_id', 'gateway_id', 'to_partner_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -21,8 +21,8 @@ class Transfer extends BaseModel
      * @var array<string>
      */
     public $rec_names = [
-        'fields' => ['from_user_id__name', 'to_user_id__name', 'gateway_id__title', 'amount'],
-        'template' => "[from_user_id__name] -[to_user_id__name] ([gateway_id__title] [amount])",
+        'fields' => ['from_partner_id__name', 'to_partner_id__name', 'gateway_id__title', 'amount'],
+        'template' => "[from_partner_id__name] -[to_partner_id__name] ([gateway_id__title] [amount])",
     ];
 
     /**
@@ -67,13 +67,13 @@ class Transfer extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['from_user_id', 'to_user_id', 'gateway_id', 'amount'];
+        $structure['table'] = ['from_partner_id', 'to_partner_id', 'gateway_id', 'amount'];
         $structure['form'] =[
-            ['label' => 'Transfer Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['from_user_id', 'to_user_id', 'gateway_id', 'amount', 'currency_id']],
+            ['label' => 'Transfer Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['from_partner_id', 'to_partner_id', 'gateway_id', 'amount', 'currency_id']],
             ['label' => 'Transfer Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['token', 'is_canceled', 'from_partner_id', 'to_partner_id']],
             ['label' => 'Transfer Description', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['description', 'params']],
         ];
-        $structure['filter'] = ['from_user_id', 'to_user_id', 'gateway_id', 'amount'];
+        $structure['filter'] = ['from_partner_id', 'to_partner_id', 'gateway_id', 'amount'];
         return $structure;
     }
 }
