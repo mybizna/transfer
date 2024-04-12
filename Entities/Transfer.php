@@ -76,4 +76,15 @@ class Transfer extends BaseModel
         $structure['filter'] = ['from_partner_id', 'to_partner_id', 'gateway_id', 'amount'];
         return $structure;
     }
+
+
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }
