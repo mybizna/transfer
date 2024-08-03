@@ -16,23 +16,6 @@ class Transfer extends BaseModel
     protected $fillable = ['id', 'amount', 'currency', 'token', 'description', 'params', 'is_canceled', 'from_partner_id', 'gateway_id', 'to_partner_id'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = [
-        'fields' => ['from_partner_id__name', 'to_partner_id__name', 'gateway_id__title', 'amount'],
-        'template' => "[from_partner_id__name] -[to_partner_id__name] ([gateway_id__title] [amount])",
-    ];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -62,35 +45,8 @@ class Transfer extends BaseModel
 
     }
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['from_partner_id', 'to_partner_id', 'gateway_id', 'amount'];
-        $structure['form'] =[
-            ['label' => 'Transfer Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['from_partner_id', 'to_partner_id', 'gateway_id', 'amount', 'currency_id']],
-            ['label' => 'Transfer Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['token', 'is_canceled', 'from_partner_id', 'to_partner_id']],
-            ['label' => 'Transfer Description', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['description', 'params']],
-        ];
-        $structure['filter'] = ['from_partner_id', 'to_partner_id', 'gateway_id', 'amount'];
-        return $structure;
-    }
 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
 
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
-        $rights['guest'] = [];
 
-        return $rights;
-    }
 }
