@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('transfer_diallowedin', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->bigInteger('country_id')->nullable();
+
             $table->timestamps();
         });
     }
