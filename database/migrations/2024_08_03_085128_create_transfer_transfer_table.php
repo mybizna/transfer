@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('is_canceled')->nullable()->default(false);
             $table->foreignId('from_partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('transfer_transfer_from_partner_id');
             $table->foreignId('to_partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('transfer_transfer_to_partner_id');
-            $table->foreignId('gateway_id')->constrained('account_transfer')->onDelete('cascade')->nullable()->index('transfer_transfer_gateway_id');
+            $table->foreignId('gateway_id')->constrained('account_gateway')->onDelete('cascade')->nullable()->index('transfer_transfer_gateway_id');
 
             $table->timestamps();
         });
