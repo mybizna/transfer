@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transfer_diallowedin', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('country_id');
+            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('transfer_diallowedin_country_id');
 
             $table->timestamps();
         });
