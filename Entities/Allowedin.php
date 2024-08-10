@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Transfer\Entities;
+namespace Modules\Transfer\Models;
 
-use Modules\Base\Entities\BaseModel;
+use Modules\Base\Models\BaseModel;
 
 class Allowedin extends BaseModel
 {
