@@ -9,7 +9,7 @@ class TransferServiceProvider extends ServiceProvider
 {
     protected string $moduleName = 'Transfer';
 
-    protected string $moduleNameLower = 'Transfer';
+    protected string $moduleNameLower = 'transfer';
 
     /**
      * Boot the application events.

@@ -2,20 +2,22 @@
 
 namespace Modules\Transfer\Filament\Resources;
 
-use Modules\Transfer\Filament\Resources\DisallowedinResource\Pages;
-use Modules\Transfer\Filament\Resources\DisallowedinResource\RelationManagers;
-use Modules\Transfer\Models\Disallowedin;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Transfer\Filament\Resources\DisallowedinResource\Pages;
+use Modules\Transfer\Models\Disallowedin;
 
 class DisallowedinResource extends Resource
 {
     protected static ?string $model = Disallowedin::class;
+
+    protected static ?string $slug = 'transfer/disallowedin';
+
+    protected static ?string $navigationGroup = 'Transfer';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

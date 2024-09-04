@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transfer_diallowedin', function (Blueprint $table) {
+        Schema::create('transfer_disallowedin', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('transfer_diallowedin_country_id');
+            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('transfer_disallowedin_country_id');
 
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transfer_diallowedin');
+        Schema::dropIfExists('transfer_disallowedin');
     }
 };

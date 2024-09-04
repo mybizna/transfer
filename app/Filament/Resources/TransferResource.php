@@ -2,9 +2,6 @@
 
 namespace Modules\Transfer\Filament\Resources;
 
-use Modules\Transfer\Filament\Resources\TransferResource\Pages;
-use Modules\Transfer\Filament\Resources\TransferResource\RelationManagers;
-use Modules\Transfer\Models\Transfer;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Transfer\Filament\Resources\TransferResource\Pages;
+use Modules\Transfer\Models\Transfer;
 
 class TransferResource extends Resource
 {
     protected static ?string $model = Transfer::class;
+
+    protected static ?string $slug = 'transfer/transfer';
+
+    protected static ?string $navigationGroup = 'Transfer';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
