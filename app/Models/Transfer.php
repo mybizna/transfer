@@ -2,7 +2,9 @@
 
 namespace Modules\Transfer\Models;
 
+use Modules\Account\Models\Gateway;
 use Modules\Base\Models\BaseModel;
+use Modules\Partner\Models\Partner;
 
 class Transfer extends BaseModel
 {
@@ -20,5 +22,32 @@ class Transfer extends BaseModel
      * @var string
      */
     protected $table = "transfer_transfer";
+
+    /**
+     * Add relationship to Gateway
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gateway()
+    {
+        return $this->belongsTo(Gateway::class);
+    }
+
+    /**
+     * Add relationship to Partner
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function fromPartner()
+    {
+        return $this->belongsTo('Modules\Partner\Models\Partner', 'from_partner_id');
+    }
+
+    /**
+     * Add relationship to Partner
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function toPartner()
+    {
+        return $this->belongsTo('Modules\Partner\Models\Partner', 'to_partner_id');
+    }
 
 }

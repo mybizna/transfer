@@ -3,6 +3,7 @@
 namespace Modules\Transfer\Models;
 
 use Modules\Base\Models\BaseModel;
+use Modules\Core\Models\Country;
 
 class Allowedin extends BaseModel
 {
@@ -20,5 +21,14 @@ class Allowedin extends BaseModel
      * @var string
      */
     protected $table = "transfer_allowedin";
+
+    /**
+     * Add relationship to Country
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
 }
