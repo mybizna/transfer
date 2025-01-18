@@ -1,16 +1,24 @@
 <?php
-
 namespace Modules\Transfer\Models;
 
+use Base\Casts\Money;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Account\Models\Gateway;
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transfer extends BaseModel
 {
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -52,12 +60,11 @@ class Transfer extends BaseModel
         return $this->belongsTo('Modules\Partner\Models\Partner', 'to_partner_id');
     }
 
-
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
-        $table->decimal('amount', 11)->nullable();
+        $table->integer('amount')->nullable();
+        $table->string('currency')->default('USD');
         $table->foreignId('currency_id')->nullable()->constrained(table: 'core_currency')->onDelete('set null');
         $table->string('token')->nullable();
         $table->longText('description')->nullable();
