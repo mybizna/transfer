@@ -1,11 +1,10 @@
 <?php
-
 namespace Modules\Transfer\Models;
 
-use Modules\Base\Models\BaseModel;
-use Modules\Core\Models\Country;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
+use Modules\Base\Models\BaseModel;
+use Modules\Core\Models\Country;
 
 class Disallowedin extends BaseModel
 {
@@ -33,11 +32,14 @@ class Disallowedin extends BaseModel
         return $this->belongsTo(Country::class);
     }
 
-
     public function migration(Blueprint $table): void
     {
 
+        $table->unsignedBigInteger('country_id')->nullable();
+    }
 
-        $table->foreignId('country_id')->nullable()->constrained('core_country')->onDelete('set null');
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('country_id')->references('id')->on('core_country')->onDelete('set null');
     }
 }

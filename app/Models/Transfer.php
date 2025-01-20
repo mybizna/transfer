@@ -65,14 +65,21 @@ class Transfer extends BaseModel
 
         $table->integer('amount')->nullable();
         $table->string('currency')->default('USD');
-        $table->foreignId('currency_id')->nullable()->constrained(table: 'core_currency')->onDelete('set null');
+        $table->unsignedBigInteger('currency_id')->nullable();
         $table->string('token')->nullable();
         $table->longText('description')->nullable();
         $table->longText('params')->nullable();
         $table->boolean('is_canceled')->nullable()->default(false);
-        $table->foreignId('from_partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
-        $table->foreignId('to_partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
-        $table->foreignId('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
+        $table->unsignedBigInteger('from_partner_id')->nullable();
+        $table->unsignedBigInteger('to_partner_id')->nullable();
+        $table->unsignedBigInteger('gateway_id')->nullable();
+    }
 
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('currency_id')->nullable()->constrained(table: 'core_currency')->onDelete('set null');
+        $table->foreign('from_partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->foreign('to_partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->foreign('gateway_id')->nullable()->constrained(table: 'account_gateway')->onDelete('set null');
     }
 }
