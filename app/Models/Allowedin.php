@@ -39,6 +39,6 @@ class Allowedin extends BaseModel
 
     public function post_migration(Blueprint $table): void
     {
-        $table->foreign('country_id')->nullable()->constrained(table: 'core_country')->onDelete('set null');
+        $table->foreign('country_id')->references('id')->on(table: 'core_country')->onDelete('set null');
     }
 }
